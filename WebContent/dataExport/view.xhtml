@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pp="http://primefaces.org/uip" >
+
+	<h:head/>
+	
+	<h:body>
+		
+		<h:form >
+				
+			<p:dataTable id="personTable" var="person" value="#{viewDataExportModelBean.personList}" 
+				paginator="true" rows="10" binding="#{viewDataExportModelBean.personTable}" >
+	        	<p:column>
+		        	<f:facet name="header">
+		        		<h:outputText value="First name" />
+		        	</f:facet>
+		        	<h:outputText value="#{person.firstname}"/>	
+	        	</p:column>
+	        	
+	        	<p:column>
+		        	<f:facet name="header">
+		        		<h:outputText value="Last name" />
+		        	</f:facet>
+		        	<h:outputText value="#{person.lastname}"/>	
+	        	</p:column>
+	        	
+	        	<p:column>
+		        	<f:facet name="header">
+		        		<h:outputText value="Address" />
+		        	</f:facet>
+		        	<h:outputText value="#{person.address}"/>	
+	        	</p:column>
+	        	
+	        </p:dataTable>
+	        
+	        <p:panel header="Export all data">
+				<p:commandLink>
+					<p:graphicImage value="/images/excel.png" />
+					<pp:dataExporter type="xls" target="personTable" fileName="persons" />
+				</p:commandLink>
+				<p:commandLink>
+					<p:graphicImage value="/images/pdf.png" />
+					<pp:dataExporter type="pdf" target="personTable" fileName="persons" />
+				</p:commandLink>
+				<p:commandLink>
+					<p:graphicImage value="/images/csv.png" />
+					<pp:dataExporter type="csv" target="personTable" fileName="persons" />
+				</p:commandLink>
+				<p:commandLink>
+					<p:graphicImage value="/images/xml.png" />
+					<pp:dataExporter type="xml" target="personTable" fileName="persons" />
+				</p:commandLink>
+	        </p:panel>
+					
+		</h:form>
+
+	</h:body>
+	
+</html>
